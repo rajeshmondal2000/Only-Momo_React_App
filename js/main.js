@@ -1,4 +1,3 @@
-
 function ScreenReducer(screen=0,action) {
   switch(action.type) {
     case 'HOME':
@@ -178,12 +177,12 @@ function SearchScreen() {
 
 function AccountScreen() {
   
-  const[isAuth, setAuth] = React.useState(false)
+  const[isAuth, setAuth] = React.useState(true)
   const [account, setAccount] = React.useState(null)
   
   return(
     <div className="screen block">
-      {isAuth?<AccountCard />:<Login />}
+      {isAuth?<AccountCard Name="Rajesh Mondal" Mobile="9123999737" Email="rajeshmondal9007@gmail.com" />:<Login />}
     </div>
   )
 }
@@ -207,7 +206,7 @@ function App() {
   return(
     <>
       <TopNavBar title="Only Momo's" address="Fultala 3No Gate, Piyali Town" cartCount={cart} />
-      {screen==0?<HomeScreen />:screen==1?<SearchScreen />:null}
+      {screen==0?<HomeScreen />:screen==1?<SearchScreen />:screen==2?<AccountScreen />:null}
       <BottomNavBar />
     </>
   )
@@ -227,11 +226,6 @@ fetch('https://code-cheap-node.herokuapp.com/product/read').then((response)=>{
     console.log(response.statusText)
   }
 })
-
-
-FB.getLoginStatus(function(response) {
-  alert(JSON.stringify(response));
-});
 
 ReactDOM.render(<App />, document.getElementById('root'))
 

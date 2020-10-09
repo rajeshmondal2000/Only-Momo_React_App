@@ -56,10 +56,27 @@ function ProductCard({ Image, Name, Description, Price, Count, Category, Id }) {
 }
 
 
-function AccountCard() {
+function AccountCard({ Name, Mobile, Email }) {
   return(
-    <div>
-      Account Details
+    <div className="account-card block">
+      <div className="logout-btn col-1-1 right">
+        <ion-icon name="log-out-outline"></ion-icon>
+        <p>Logout</p>
+      </div>
+      <img src="../images/Homepage_testi.png" alt="Account Avatar" className="center" />
+      <br />
+      <div className="col-1-3">
+        <p className="title">Name:</p>
+        <p className="">{Name}</p>
+      </div>
+      <div className="col-1-3">
+        <p className="title">Mobile:</p>
+        <p className="">{Mobile}</p>
+      </div>
+      <div className="col-1-3">
+        <p className="title">Email:</p>
+        <p className="">{Email}</p>
+      </div>
     </div>
   )
 }
@@ -67,15 +84,23 @@ function AccountCard() {
 
 function Login() {
   return(
-    <div className="">
-      Login
+    <div className="login block">
+      <h2 className="center">Login</h2>
+      <label><ion-icon name="person-circle-outline"></ion-icon>Username</label>
+      <input type="number" placeholder="Enter Your Mobile No" />
+      <label><ion-icon name="key-outline"></ion-icon>Password</label>
+      <input type="password" placeholder="•••••••••" />
+      <button>Login</button>
+      
+      <br /><br />
+      <p className="center">Don't have an account??<a> Sign Up</a> now</p>
     </div>
   )
 }
 
 function SignUp() {
   return(
-    <div className="">
+    <div className="block">
       SignUp
     </div>
   )

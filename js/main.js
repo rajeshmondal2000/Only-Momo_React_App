@@ -230,7 +230,7 @@ fetch('https://code-cheap-node.herokuapp.com/product/read').then((response)=>{
 
 
 FB.getLoginStatus(function(response) {
-  console.log(response);
+  alert(JSON.stringify(response));
 });
 
 ReactDOM.render(<App />, document.getElementById('root'))

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Ecommerce - Resturant Online Store</title>
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <script>
+      window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '2181088818798435',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v8.0'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- React -->
+    <script src="https://unpkg.com/react@^16.2.0/umd/react.development.js"></script> 
+    <script src="https://unpkg.com/react-dom@^16.2.0/umd/react-dom.development.js"></script> 
+    
+    <!-- Redux -->
+    <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
+        
+    <!-- Ionicons -->
+    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+        
+    <div id="root"></div>
+    <script type="text/babel" src="js/component.js"></script>
+    <script type="text/babel" src="js/main.js"></script>  
+</body>
+</html>

@@ -77,6 +77,7 @@ function AccountCard({ Name, Mobile, Email }) {
         <p className="title">Email:</p>
         <p className="">{Email}</p>
       </div>
+    
     </div>
   )
 }
@@ -91,17 +92,23 @@ function Login() {
       <label><ion-icon name="key-outline"></ion-icon>Password</label>
       <input type="password" placeholder="•••••••••" />
       <button>Login</button>
-      
-      <br /><br />
-      <p className="center">Don't have an account??<a> Sign Up</a> now</p>
     </div>
   )
 }
 
 function SignUp() {
   return(
-    <div className="block">
-      SignUp
+    <div className="login block">
+      <h2 className="center">SignUp</h2>
+      <label><ion-icon name="person-circle-outline"></ion-icon>Name</label>
+      <input type="text" placeholder="Enter Your Name" />
+      <label><ion-icon name="call-outline"></ion-icon>Mobile</label>
+      <input type="number" placeholder="Enter Your Mobile No" />
+      <label><ion-icon name="mail-outline"></ion-icon>Email</label>
+      <input type="email" placeholder="Enter Your Email" />
+      <label><ion-icon name="key-outline"></ion-icon>Password</label>
+      <input type="password" placeholder="•••••••••" />
+      <button className="danger">Create Account</button>
     </div>
   )
 }

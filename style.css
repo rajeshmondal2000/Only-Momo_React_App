@@ -233,3 +233,12 @@ label {
   color: red;
   font-weight: bold;
 }
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+
+.danger {
+  background: red;
+}

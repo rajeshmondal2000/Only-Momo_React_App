@@ -1,3 +1,29 @@
+function AccountReducer(account={
+  isAuth: false, 
+  name: null, 
+  mobile: null, 
+  email: null, 
+  isEmailVerified: false, 
+  isMobileVerified: false
+}, action) {
+  switch(action.type) {
+    case 'AUTH':
+      account = {
+        isAuth: true, 
+        name: action.data.name,
+        mobile: action.data.mobile, 
+        email: action.data.email
+      }
+      return account
+    
+    case 'LOGOUT':
+      return account
+      
+    default:
+      return account
+  }
+}
+
 function ScreenReducer(screen=0,action) {
   switch(action.type) {
     case 'HOME':
@@ -53,7 +79,8 @@ function ProductReducer(products=[],action) {
 
 let Reducers = Redux.combineReducers({
   Product: ProductReducer, 
-  Screen: ScreenReducer
+  Screen: ScreenReducer, 
+  Account: AccountReducer
 })
 
 let store = Redux.createStore(Reducers)
@@ -61,7 +88,7 @@ let store = Redux.createStore(Reducers)
 
 function HomeScreen() {
   
-  const [product, setProduct] = React.useState(store.getState().Product)
+  const [product, setProduct] = React.useState([])
   
   const [filter, setFilter] = React.useState([{
     name: "All Products", 
@@ -80,24 +107,24 @@ function HomeScreen() {
     enable: false
   }])
   
-  const Filter = (filter_text)=>{
-    let NewFilter = filter.map((item, index)=>{
-      if(filter_text==item.name) {
+  const Filter = (filter_text) => {
+    let NewFilter = filter.map((item, index) => {
+      if (filter_text == item.name) {
         return {
-         ...item,
-         enable: true
+          ...item,
+          enable: true
         }
       } else {
         return {
-         ...item,
-         enable: false
+          ...item,
+          enable: false
         }
       }
       return item
     })
     let FilterProduct = []
-    store.getState().Product.forEach((item, index)=>{
-      if(item.category === filter_text || filter_text === 'All Products' || filter_text===undefined) {
+    store.getState().Product.forEach((item, index) => {
+      if (item.category === filter_text || filter_text === 'All Products' || filter_text === undefined) {
         FilterProduct.push(item)
       }
     })
@@ -114,6 +141,7 @@ function HomeScreen() {
       setProduct(tmp_product)
       Filter()
     })
+    Filter()
   }, [])
  
   return(
@@ -159,6 +187,11 @@ function SearchScreen() {
     setResult(searchResult)
   }
   
+  React.useEffect(()=>{
+    store.subscribe(()=>{
+      Search()
+    })
+  }, [])
   
   return(
     <div className="screen block">
@@ -178,11 +211,23 @@ function SearchScreen() {
 function AccountScreen() {
   
   const[isAuth, setAuth] = React.useState(true)
+  const [isLogin, setLogin] = React.useState(true)
   const [account, setAccount] = React.useState(null)
+  
+  React.useEffect(()=>{
+    store.subscribe(()=>{
+      store.getState().Account.isAuth?setAccount(store.getState().Account):null
+    })
+  }, [])
   
   return(
     <div className="screen block">
-      {isAuth?<AccountCard Name="Rajesh Mondal" Mobile="9123999737" Email="rajeshmondal9007@gmail.com" />:<Login />}
+      {isAuth?<AccountCard Name="Rajesh Mondal" Mobile="9123999737" Email="rajeshmondal9007@gmail.com" />:isLogin?<Login />:<SignUp />}
+      <br /><br />
+      {isAuth?null:<div>
+      {isLogin?<p className="center">Don't have an account ?? <a onClick={()=>setLogin(false)}>Signup</a> now</p>:null}
+      {isLogin?null:<p className="center">Don't have an account ?? <a onClick={()=>setLogin(true)}>Login</a> now</p>}
+      </div>}
     </div>
   )
 }
